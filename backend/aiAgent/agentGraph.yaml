@@ -1,0 +1,19 @@
+graph:
+  name: stemgirl_graph
+  nodes:
+    - id: stemgirl_agent
+      function: stemGirlConversation
+      outputs: [findOpportunities, suggestMentors, summarizeResults]
+
+    - id: findOpportunities
+      function: findOpportunities
+
+    - id: suggestMentors
+      function: suggestMentors
+
+    - id: summarizeResults
+      function: summarizeResults
+
+  edges:
+    - from: stemgirl_agent
+      to: summarizeResults

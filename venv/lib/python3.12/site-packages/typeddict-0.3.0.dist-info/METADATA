@@ -1,0 +1,113 @@
+Metadata-Version: 2.1
+Name: typeddict
+Version: 0.3.0
+Summary: Use `TypedDict` replace pydantic definitions.
+Home-page: https://github.com/abersheeran/typeddict
+License: Apache-2.0
+Author: abersheeran
+Author-email: me@abersheeran.com
+Requires-Python: >=3.7,<4.0
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3
+Requires-Dist: pydantic (>=1.9.1,<2.0.0)
+Requires-Dist: typing-extensions (>=4.3.0)
+Project-URL: Repository, https://github.com/abersheeran/typeddict
+Description-Content-Type: text/markdown
+
+# TypedDict
+
+Use `TypedDict` replace [pydantic](https://pydantic-docs.helpmanual.io/) definitions.
+
+## Why?
+
+```python
+from pydantic import BaseModel
+
+
+class User(BaseModel):
+    name: str
+    age: int = Field(default=0, ge=0)
+    email: Optional[str]
+
+
+user: User = {"name": "John", "age": 30}  # Type check, error!
+print(repr(user))
+```
+
+In index.py or other framework, maybe you write the following code. And then got an type check error in `Annotated[Message, ...]`, because the type of `{"message": "..."}` is not `Message`.
+
+```python
+class Message(BaseModel):
+    message: str
+
+
+@routes.http.post("/user")
+async def create_user(
+    ...
+) -> Annotated[Message, JSONResponse[200, {}, Message]]:
+    ...
+    return {"message": "Created successfully!"}
+```
+
+## Usage
+
+Use `Annotated` to provide extra information to `pydantic.Field`. Other than that, everything conforms to the general usage of `TypedDict`. Using `to_pydantic` will create a semantically equivalent pydantic model. You can use it in frameworks like [index.py](https://github.com/index-py/index.py) / [fastapi](https://fastapi.tiangolo.com/) / [xpresso](https://github.com/adriangb/xpresso).
+
+```python
+from typing_extensions import Annotated, NotRequired, TypedDict
+
+import typeddict
+from typeddict import Extra, Metadata
+
+
+class User(TypedDict):
+    name: str
+    age: Annotated[int, Metadata(default=0), Extra(ge=0)]
+    email: NotRequired[Annotated[str, Extra(min_length=5, max_length=100)]]
+
+
+class Book(TypedDict):
+    author: NotRequired[User]
+
+
+user: User = {"name": "John", "age": 30}  # Type check, pass!
+print(repr(user))
+
+# Then use it in fastapi / index.py or other frameworks
+UserModel = typeddict.to_pydantic(User)
+print(repr(UserModel.__signature__))
+print(repr(UserModel.parse_obj(user)))
+
+book: Book = {"author": user}  # Type check, pass!
+print(repr(book))
+
+# Then use it in fastapi / index.py or other frameworks
+BookModel = typeddict.to_pydantic(Book)
+print(repr(BookModel.__signature__))
+print(repr(BookModel.parse_obj(book)))
+```
+
+### `cast`
+
+Sometimes you may not need a pydantic model, you can directly use typeddict to parse the data.
+
+```python
+import typeddict
+
+
+class User(TypedDict):
+    name: str
+    age: Annotated[int, Metadata(default=0), Extra(ge=0)]
+    email: NotRequired[Annotated[str, Extra(min_length=5, max_length=100)]]
+
+
+user = typeddict.cast(User, {"name": "John", "age": 30, "unused-info": "....."})
+print(repr(user))
+```
+
