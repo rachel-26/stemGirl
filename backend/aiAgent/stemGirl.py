@@ -1,15 +1,13 @@
+# backend/aiAgent/stemGirl.py
+
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from typing import TypedDict, List, Dict
 from langchain.prompts import ChatPromptTemplate
 from langchain.chat_models import init_chat_model
-from .opportunityFinder import findOpportunities
-from .mentorMatch import suggestMentors
-from .summarizer import summarizeResults
 from langgraph.graph import StateGraph, MessagesState, START, END
-from langchain_community.chat_models import ChatOpenAI
-from langchain.prompts import ChatPromptTemplate
 
 from aiAgent.tools.addEvent import addEventTool
 from aiAgent.tools.listEvent import listEventsTool
@@ -18,53 +16,96 @@ from aiAgent.opportunityFinder import findOpportunities
 from aiAgent.summarizer import summarizeResults
 
 
+# TypedDict for structured state
 class STEMGirlState(TypedDict):
     message: str
     response: str
+    events: List[Dict]
     opportunities: List[Dict]
     mentors: str
     summary: str
 
+
+
+# Initialize state
 def create_initial_state() -> STEMGirlState:
     return STEMGirlState(
-        message="",
-        response="",
-        opportunities=[],
-        mentors="",
-        summary=""
+        message="", response="", events=[], opportunities=[], mentors="", summary=""
     )
 
+
+
+# Core STEMGirl conversation
 def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
     userMessage = state["message"]
+    msg_lower = userMessage.lower()
+
+    # Initialize LLM
     llm = init_chat_model(model="gpt-4o", model_provider="openai")
 
-    prompt = ChatPromptTemplate.from_template("""
+    # LLM prompt
+    prompt = ChatPromptTemplate.from_template(
+        """
     You are STEMGirl — an AI mentor guiding girls in STEM.
     You answer questions kindly, provide useful resources, and
-    guide them to opportunities or mentors when needed.
+    guide them to events, opportunities, or mentors when needed.
 
     User: {userMessage}
     STEMGirl:
-    """)
+    """
+    )
 
+    # Get LLM response
     response = llm.invoke(prompt.format(userMessage=userMessage))
     state["response"] = response.content
 
-    if "competition" in userMessage.lower() or "event" in userMessage.lower():
-        state["opportunities"].extend(findOpportunities(userMessage))
-    elif "mentor" in userMessage.lower():
+
+    # Handle tools
+    if "add event" in msg_lower:
+        state["events"].append(
+            addEventTool(
+                "Tech Girls Expo",
+                "2025-11-01",
+                "Dar es Salaam",
+                "STEM Fair for students.",
+            )
+        )
+    elif "list events" in msg_lower or "show events" in msg_lower:
+        state["events"].extend(listEventsTool())
+
+    if "mentor" in msg_lower:
         state["mentors"] = suggestMentors(userMessage)
 
+    if "competition" in msg_lower or "opportunity" in msg_lower or "event" in msg_lower:
+        state["opportunities"].extend(findOpportunities(userMessage))
+
+
+    # Summarize conversation
     summary_prompt = f"Summarize the following STEMGirl conversation concisely:\n\n{state['response']}"
     state["summary"] = summarizeResults(summary_prompt)
 
     return state
 
+
+
+# Create LangGraph agent
+def createStemGirlAgent():
+    graph = StateGraph(MessagesState)
+    graph.add_node("chat", stemGirlConversation)
+    graph.add_edge(START, "chat")
+    graph.add_edge("chat", END)
+    return graph.compile()
+
+
+
+# Test run
 if __name__ == "__main__":
     state = create_initial_state()
     state["message"] = "Can you suggest STEM competitions for girls?"
     state = stemGirlConversation(state)
+
     print("Response:", state["response"])
+    print("Events:", state["events"])
     print("Opportunities:", state["opportunities"])
     print("Mentors:", state["mentors"])
     print("Summary:", state["summary"])

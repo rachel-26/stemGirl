@@ -1,15 +1,12 @@
-from fastapi import FastAPI
-from ..aiAgent.stemGirl import stemGirlConversation
+from aiAgent.stemGirl import createStemGirlAgent
 
-app = FastAPI()
-graph = stemGirlConversation()
 
-@app.get("/")
-def home():
-    return {"message": "Welcome to STEM Girl Connect API"}
-
-@app.post("/chat/")
-def chat_with_agent(message: str):
-    state = {"message": message}
+def runTest():
+    graph = createStemGirlAgent()
+    state = {"message": "Can you list STEM events?"}
     result = graph.invoke(state)
-    return {"reply": result["response"]}
+    print("STEMGirl says:", result["response"])
+
+
+if __name__ == "__main__":
+    runTest()
