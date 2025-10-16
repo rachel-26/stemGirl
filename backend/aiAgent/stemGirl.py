@@ -6,15 +6,16 @@ from typing import TypedDict, List, Dict
 from langchain.prompts import ChatPromptTemplate
 from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, START, END
+from datetime import datetime
+import re,json
 
+# Import tools
 from backend.aiAgent.tools.addEvent import addEventTool
 from backend.aiAgent.tools.listEvent import listEventsTool
 from backend.aiAgent.mentorMatch import suggestMentors
 from backend.aiAgent.opportunityFinder import findOpportunities
 from backend.aiAgent.summarizer import summarizeResults
-from datetime import datetime
-
-import re
+from backend.aiAgent.tools.eventRAG import queryEvents
 
 
 # TypedDict for structured state
@@ -71,7 +72,7 @@ def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
     else:
         userMessage = state["messages"][-1]
 
-    msg_lower = userMessage.lower()
+    msgLower = userMessage.lower()
 
     # Initialize LLM
     llm = init_chat_model(model="gpt-4o", model_provider="openai")
@@ -79,60 +80,82 @@ def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
     today = datetime.now().strftime("%B %d, %Y")
 
     # Prompt
-    prompt_text = f"""
+    promptText = f"""
 You are STEMGirl — an AI mentor guiding girls in STEM.
 You answer questions kindly, provide useful resources, and
 guide them to events, opportunities, or mentors when needed.
 
-Today is {today} When listing events, always give upcoming events(dates after today ) in the future, not past events.
+Today is {today}. When listing events, always give upcoming events (dates after today) in the future, not past events.
 Include event name, exact date (month, day, year), and optionally location.
-Format: Event Name (Date): Short description. Location: [City or Online]
+Format: Output ALL events in a JSON array, even if there is only one event.
+    "name": "Event Name",
+    "date": "Month Day, Year",
+    "location": "City or Online",
+    "description": "Short description"
 
-make as many as you can
-
+Make as many as you can.
 
 User: {userMessage}
 STEMGirl:
 """
-    prompt = ChatPromptTemplate.from_template(prompt_text)
+    prompt = ChatPromptTemplate.from_template(promptText)
 
     # Get LLM response
     response = llm.invoke(prompt.format(userMessage=userMessage))
     state["response"] = response.content
 
-    # Handle tools based on keywords
+    # --- 🔹 Handle tools based on user intent ---
 
-    # Add events automatically from STEMGirl output
-    if (
-        "event" in msg_lower
-        or "add event" in msg_lower
-        or "upcoming events" in msg_lower
-    ):
-        # Parse events from the generated response
-        events_to_add = parse_events_from_text(state["response"])
-        saved_count = 0
-        for e in events_to_add:
-            addEventTool(e["name"], e["date"], e["location"], e["description"])
-            saved_count += 1
-        if saved_count:
-            state["events"].append(f"{saved_count} events saved to JSON!")
+        # Add events automatically from STEMGirl output
+    if ("event" in msgLower or "add event" in msgLower or "upcoming events" in msgLower):
+    # --- NEW: parse JSON directly from LLM output ---
+        try:
+            # Extract only the JSON block from the response (between ```json and ```)
+            jsonMatch = re.search(r"```json(.*?)```", state["response"], re.DOTALL)
+            if jsonMatch:
+                jsonText = jsonMatch.group(1).strip()
+            else:
+                jsonText = state["response"].strip()
+
+            eventsToAdd = json.loads(jsonText)
+        except json.JSONDecodeError:
+            eventsToAdd = []
+        state["events"].append("Failed to parse events from LLM output. Ensure the response is valid JSON.")
+
+        if isinstance(eventsToAdd, dict):
+            eventsToAdd = [eventsToAdd]
+
+        savedCount = 0
+        for e in eventsToAdd:
+            addEventTool(
+                e["name"], e["date"], e.get("location", "Online"), e.get("description", "")
+        )
+        savedCount += 1
+
+    if savedCount > 0:
+        state["events"].append(f"{savedCount} events saved to JSON!")
+
+        # Use RAG to answer event-related questions
+        ragResponse = queryEvents(userMessage)
+        if ragResponse:
+            state["response"] += f"\n\n{ragResponse}"
 
     # List events
-    elif "list events" in msg_lower or "show events" in msg_lower:
-        event_text = listEventsTool()
-        state["events"].append(event_text)
+    elif "list events" in msgLower or "show events" in msgLower:
+        eventText = listEventsTool()
+        state["events"].append(eventText)
 
     # Handle mentors
-    if "mentor" in msg_lower:
+    if "mentor" in msgLower:
         state["mentors"] = suggestMentors(userMessage)
 
     # Handle opportunities
-    if "competition" in msg_lower or "opportunity" in msg_lower:
+    if "competition" in msgLower or "opportunity" in msgLower:
         state["opportunities"].extend(findOpportunities(userMessage))
 
     # Summarize conversation
-    summary_prompt = f"Summarize the following STEMGirl conversation concisely:\n\n{state['response']}"
-    state["summary"] = summarizeResults(summary_prompt)
+    summaryPrompt = f"Summarize the following STEMGirl conversation concisely:\n\n{state['response']}"
+    state["summary"] = summarizeResults(summaryPrompt)
 
     return state
 
