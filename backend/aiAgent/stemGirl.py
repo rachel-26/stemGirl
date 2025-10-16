@@ -132,8 +132,8 @@ STEMGirl:
         )
         savedCount += 1
 
-    if savedCount > 0:
-        state["events"].append(f"{savedCount} events saved to JSON!")
+        if savedCount > 0:
+            state["events"].append(f"{savedCount} events saved to JSON!")
 
         # Use RAG to answer event-related questions
         ragResponse = queryEvents(userMessage)

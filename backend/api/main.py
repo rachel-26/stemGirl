@@ -1,52 +1,86 @@
-from fastapi import FastAPI, HTTPException
+# backend/api/main.py
+from fastapi import FastAPI
 from pydantic import BaseModel
+from typing import List, Dict
 from backend.aiAgent.stemGirl import createStemGirlAgent, create_initial_state
+import json,os
 
-# Initialize FastAPI app
-app = FastAPI(title="STEMGirl API", version="1.0")
+app = FastAPI(title="STEMGirl API")
 
-# Create LangGraph agent once
+EVENTS_PATH = os.path.join(os.path.dirname(__file__), "../aiAgent/data/events.json")
+
+
+# Initialize the agent once
 graph = createStemGirlAgent()
 
 
-# Define input schema for API requests
+# -------------------------------
+# Pydantic models for request/response
+# -------------------------------
 class ChatRequest(BaseModel):
     message: str
 
 
-# Define response schema (optional but clean)
 class ChatResponse(BaseModel):
     response: str
-    events: list
-    opportunities: list
+    events: List[str]
+    opportunities: List[Dict]
     mentors: str
     summary: str
 
 
+# API endpoints
+@app.get("/")
+def root():
+    return {"message": "Welcome to STEMGirl API. Use /chat endpoint to interact."}
+
+
 @app.post("/chat", response_model=ChatResponse)
-def chat_with_stemgirl(request: ChatRequest):
-    try:
-        # Create a new conversation state
-        state = create_initial_state()
-        state["messages"].append(request.message)
+def chat_endpoint(req: ChatRequest):
+    """
+    Send a message to STEMGirl agent and get the response along with events,
+    opportunities, mentors, and a summary.
+    """
+    state = create_initial_state()
+    state["messages"].append(req.message)
 
-        # Run the agent
-        result = graph.invoke(state)
+    # Run the agent
+    result = graph.invoke(state)
 
-        # Return response as JSON
-        return ChatResponse(
-            response=result["response"],
-            events=result["events"],
-            opportunities=result["opportunities"],
-            mentors=result["mentors"],
-            summary=result["summary"],
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    # Ensure opportunities is always a list of dicts
+    normalizedOpportunities = []
+    for o in state["opportunities"]:
+        if isinstance(o, dict):
+            normalizedOpportunities.append(o)
+        elif isinstance(o, str):
+            normalizedOpportunities.append({"title": o})
+    result["opportunities"] = normalizedOpportunities
+
+    # Ensure summary is a string
+    if isinstance(state["summary"], dict) and "summary" in result["summary"]:
+        result["summary"] = result["summary"]["summary"]
+    else:
+        result["summary"] = str(result["summary"])
+
+    # Return structured response
+    return ChatResponse(
+        response=result["response"],
+        events=result["events"],
+        opportunities=result["opportunities"],
+        mentors=result["mentors"],
+        summary=result["summary"],
+    )
 
 
-# Optional: Keep your test run for CLI
-if __name__ == "__main__":
-    import uvicorn
+@app.get("/events")
+def get_events():
+    """
+    Return all saved STEM events from events.json.
+    """
+    if not os.path.exists(EVENTS_PATH):
+        return {"events": []}
 
-    uvicorn.run("backend.api.main:app", host="0.0.0.0", port=8000, reload=True)
+    with open(EVENTS_PATH, "r") as f:
+        events = json.load(f)
+
+    return {"events": events}
