@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Tech Savvy Conference 2023 (November 12, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A day-long event aimed at getting girls interested in STEM through hands-on workshops and inspiring talks. Location: [Chicago, IL]"
+    },
+    {
+        "name": "Girls Who Code Virtual Summer Immersion Program (Summer 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A free 2-week virtual program providing high school girls with the opportunity to learn coding skills and get exposure to tech jobs. Location: [Online]"
+    },
+    {
+        "name": "Introduce a Girl to Engineering Day (February 22, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "Part of Engineering Week, this event provides girls with tours of engineering labs, mentorship, and interactive sessions. Location: [Various Locations - Check Local Listings]"
+    },
+    {
+        "name": "Society of Women Engineers (SWE) Annual Conference (October 25-27, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "The world\u2019s largest conference for women engineers and technologists offering career development, networking, and mentoring. Location: [Los Angeles, CA]"
+    },
+    {
+        "name": "Out in STEM Conference (oSTEM) 2023 (November 16-19, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "An annual summit for LGBTQ+ individuals in STEM fields, featuring workshops, panels, and networking opportunities. Location: [Anaheim, CA]"
+    },
+    {
+        "name": "Scientista Symposium 2024 (April 6-7, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A national conference bringing together women across STEM disciplines for professional development, inspiring speeches, and networking. Location: [Cambridge, MA]"
+    },
+    {
+        "name": "NASA GLOBE Virtual Student Conference (March 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "An online event where students present STEM research and projects in environmental science to peers and experts. Location: [Online]"
+    },
+    {
+        "name": "WiSTEM Week 2024 (May 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A week-long series of webinars and workshops celebrating women in STEM with a focus on career paths and skill-building. Location: [Online]"
+    }
+]

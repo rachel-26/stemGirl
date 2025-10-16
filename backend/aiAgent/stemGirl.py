@@ -1,5 +1,3 @@
-# backend/aiAgent/stemGirl.py
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -7,7 +5,7 @@ load_dotenv()
 from typing import TypedDict, List, Dict
 from langchain.prompts import ChatPromptTemplate
 from langchain.chat_models import init_chat_model
-from langgraph.graph import StateGraph, MessagesState, START, END
+from langgraph.graph import StateGraph, START, END
 
 from backend.aiAgent.tools.addEvent import addEventTool
 from backend.aiAgent.tools.listEvent import listEventsTool
@@ -15,68 +13,127 @@ from backend.aiAgent.mentorMatch import suggestMentors
 from backend.aiAgent.opportunityFinder import findOpportunities
 from backend.aiAgent.summarizer import summarizeResults
 
+import re
+
 
 # TypedDict for structured state
+
+
 class STEMGirlState(TypedDict):
-    messages: List[str]
+    messages: List[str]  # must be a list
     response: str
-    events: List[Dict]
+    events: List[str]  # store text confirmations
     opportunities: List[Dict]
     mentors: str
     summary: str
 
 
 # Initialize state
+
+
 def create_initial_state() -> STEMGirlState:
     return STEMGirlState(
         messages=[], response="", events=[], opportunities=[], mentors="", summary=""
     )
 
 
+# Helper: parse events from STEMGirl text
+
+
+def parse_events_from_text(text: str) -> List[Dict]:
+    """
+    Extract events from STEMGirl text output.
+    Returns a list of dicts with name, date, location, description.
+    """
+    events = []
+    lines = text.split("\n")
+    for line in lines:
+        # Match lines like: 1. **Event Name (Date)**: Description
+        m = re.match(r"\d+\.\s\*\*(.+?)\*\*\s*(?:\((.*?)\))?:\s*(.+)", line)
+        if m:
+            name = m.group(1).strip()
+            date = m.group(2).strip() if m.group(2) else "TBD"
+            description = m.group(3).strip()
+            location = (
+                "Online"  # Default, since most generated text does not include location
+            )
+            events.append(
+                {
+                    "name": name,
+                    "date": date,
+                    "location": location,
+                    "description": description,
+                }
+            )
+    return events
+
+
 # Core STEMGirl conversation
+
+
 def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
-    userMessage = state["messages"][-1]
+    # Take the latest user message
+    if not state["messages"]:
+        userMessage = ""
+    else:
+        userMessage = state["messages"][-1]
+
     msg_lower = userMessage.lower()
 
     # Initialize LLM
     llm = init_chat_model(model="gpt-4o", model_provider="openai")
 
-    # LLM prompt
+    # Prompt
     prompt = ChatPromptTemplate.from_template(
         """
-    You are STEMGirl — an AI mentor guiding girls in STEM.
-    You answer questions kindly, provide useful resources, and
-    guide them to events, opportunities, or mentors when needed.
+You are STEMGirl — an AI mentor guiding girls in STEM.
+You answer questions kindly, provide useful resources, and
+guide them to events, opportunities, or mentors when needed.
 
-    User: {userMessage}
-    STEMGirl:
-    """
+When you list events, remember to include the following
+
+Event Name (Date): Short description. Location: [City or Online]
+make as many as you can
+
+
+User: {userMessage}
+STEMGirl:
+"""
     )
 
     # Get LLM response
     response = llm.invoke(prompt.format(userMessage=userMessage))
     state["response"] = response.content
 
+    # Handle tools based on keywords
 
-    # Handle tools
-    if "add event" in msg_lower:
-        state["events"].append(
-            addEventTool(
-                "Tech Girls Expo",
-                "2025-11-01",
-                "Dar es Salaam",
-                "STEM Fair for students.",
-            )
-        )
+    # Add events automatically from STEMGirl output
+    if (
+        "event" in msg_lower
+        or "add event" in msg_lower
+        or "upcoming events" in msg_lower
+    ):
+        # Parse events from the generated response
+        events_to_add = parse_events_from_text(state["response"])
+        saved_count = 0
+        for e in events_to_add:
+            addEventTool(e["name"], e["date"], e["location"], e["description"])
+            saved_count += 1
+        if saved_count:
+            state["events"].append(f"{saved_count} events saved to JSON!")
+
+    # List events
     elif "list events" in msg_lower or "show events" in msg_lower:
-        state["events"].extend(listEventsTool())
+        event_text = listEventsTool()
+        state["events"].append(event_text)
 
+    # Handle mentors
     if "mentor" in msg_lower:
         state["mentors"] = suggestMentors(userMessage)
 
-    if "competition" in msg_lower or "opportunity" in msg_lower or "event" in msg_lower:
+    # Handle opportunities
+    if "competition" in msg_lower or "opportunity" in msg_lower:
         state["opportunities"].extend(findOpportunities(userMessage))
-
 
     # Summarize conversation
     summary_prompt = f"Summarize the following STEMGirl conversation concisely:\n\n{state['response']}"
@@ -97,13 +154,11 @@ def createStemGirlAgent():
 # Test run
 if __name__ == "__main__":
     state = create_initial_state()
-    #state["messages"] = ["Can you suggest STEM competitions for girls?"]
-    state["messages"].append("Can you suggest STEM competitions for girls?")
-
+    state["messages"].append("Can you suggest STEM competitions and events for girls?")
     state = stemGirlConversation(state)
 
-    print("Response:", state["response"])
-    print("Events:", state["events"])
-    print("Opportunities:", state["opportunities"])
-    print("Mentors:", state["mentors"])
-    print("Summary:", state["summary"])
+    print("Response:\n", state["response"])
+    print("\nEvents:\n", state["events"])
+    print("\nOpportunities:\n", state["opportunities"])
+    print("\nMentors:\n", state["mentors"])
+    print("\nSummary:\n", state["summary"])

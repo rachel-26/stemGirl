@@ -1,7 +1,10 @@
 # backend/aiAgent/tools/listEvent.py
 import json, os
 
-DATA_PATH = os.path.join(os.path.dirname(__file__), "../data/events.json")
+# DATA_PATH = os.path.join(os.path.dirname(__file__), "../data/events.json")
+DATA_DIR = os.path.join(os.path.dirname(__file__), "../data")
+DATA_PATH = os.path.join(DATA_DIR, "events.json")
+os.makedirs(DATA_DIR, exist_ok=True)
 
 
 def listEventsTool():
