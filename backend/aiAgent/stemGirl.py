@@ -9,16 +9,16 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.chat_models import init_chat_model
 from langgraph.graph import StateGraph, MessagesState, START, END
 
-from aiAgent.tools.addEvent import addEventTool
-from aiAgent.tools.listEvent import listEventsTool
-from aiAgent.mentorMatch import suggestMentors
-from aiAgent.opportunityFinder import findOpportunities
-from aiAgent.summarizer import summarizeResults
+from backend.aiAgent.tools.addEvent import addEventTool
+from backend.aiAgent.tools.listEvent import listEventsTool
+from backend.aiAgent.mentorMatch import suggestMentors
+from backend.aiAgent.opportunityFinder import findOpportunities
+from backend.aiAgent.summarizer import summarizeResults
 
 
 # TypedDict for structured state
 class STEMGirlState(TypedDict):
-    message: str
+    messages: List[str]
     response: str
     events: List[Dict]
     opportunities: List[Dict]
@@ -26,18 +26,16 @@ class STEMGirlState(TypedDict):
     summary: str
 
 
-
 # Initialize state
 def create_initial_state() -> STEMGirlState:
     return STEMGirlState(
-        message="", response="", events=[], opportunities=[], mentors="", summary=""
+        messages=[], response="", events=[], opportunities=[], mentors="", summary=""
     )
-
 
 
 # Core STEMGirl conversation
 def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
-    userMessage = state["message"]
+    userMessage = state["messages"][-1]
     msg_lower = userMessage.lower()
 
     # Initialize LLM
@@ -87,21 +85,21 @@ def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
     return state
 
 
-
 # Create LangGraph agent
 def createStemGirlAgent():
-    graph = StateGraph(MessagesState)
+    graph = StateGraph(STEMGirlState)
     graph.add_node("chat", stemGirlConversation)
     graph.add_edge(START, "chat")
     graph.add_edge("chat", END)
     return graph.compile()
 
 
-
 # Test run
 if __name__ == "__main__":
     state = create_initial_state()
-    state["message"] = "Can you suggest STEM competitions for girls?"
+    #state["messages"] = ["Can you suggest STEM competitions for girls?"]
+    state["messages"].append("Can you suggest STEM competitions for girls?")
+
     state = stemGirlConversation(state)
 
     print("Response:", state["response"])
