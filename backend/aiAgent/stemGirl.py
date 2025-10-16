@@ -12,13 +12,12 @@ from backend.aiAgent.tools.listEvent import listEventsTool
 from backend.aiAgent.mentorMatch import suggestMentors
 from backend.aiAgent.opportunityFinder import findOpportunities
 from backend.aiAgent.summarizer import summarizeResults
+from datetime import datetime
 
 import re
 
 
 # TypedDict for structured state
-
-
 class STEMGirlState(TypedDict):
     messages: List[str]  # must be a list
     response: str
@@ -29,8 +28,6 @@ class STEMGirlState(TypedDict):
 
 
 # Initialize state
-
-
 def create_initial_state() -> STEMGirlState:
     return STEMGirlState(
         messages=[], response="", events=[], opportunities=[], mentors="", summary=""
@@ -38,8 +35,6 @@ def create_initial_state() -> STEMGirlState:
 
 
 # Helper: parse events from STEMGirl text
-
-
 def parse_events_from_text(text: str) -> List[Dict]:
     """
     Extract events from STEMGirl text output.
@@ -69,8 +64,6 @@ def parse_events_from_text(text: str) -> List[Dict]:
 
 
 # Core STEMGirl conversation
-
-
 def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
     # Take the latest user message
     if not state["messages"]:
@@ -83,23 +76,25 @@ def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
     # Initialize LLM
     llm = init_chat_model(model="gpt-4o", model_provider="openai")
 
+    today = datetime.now().strftime("%B %d, %Y")
+
     # Prompt
-    prompt = ChatPromptTemplate.from_template(
-        """
+    prompt_text = f"""
 You are STEMGirl — an AI mentor guiding girls in STEM.
 You answer questions kindly, provide useful resources, and
 guide them to events, opportunities, or mentors when needed.
 
-When you list events, remember to include the following
+Today is {today} When listing events, always give upcoming events(dates after today ) in the future, not past events.
+Include event name, exact date (month, day, year), and optionally location.
+Format: Event Name (Date): Short description. Location: [City or Online]
 
-Event Name (Date): Short description. Location: [City or Online]
 make as many as you can
 
 
 User: {userMessage}
 STEMGirl:
 """
-    )
+    prompt = ChatPromptTemplate.from_template(prompt_text)
 
     # Get LLM response
     response = llm.invoke(prompt.format(userMessage=userMessage))

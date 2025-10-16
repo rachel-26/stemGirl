@@ -46,5 +46,95 @@
         "date": "TBD",
         "location": "Online",
         "description": "A week-long series of webinars and workshops celebrating women in STEM with a focus on career paths and skill-building. Location: [Online]"
+    },
+    {
+        "name": "GirlCon Tech Conference (June 28-30, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A conference aimed at empowering the next generation of female leaders in tech through workshops, speaker sessions, and networking. Location: Chicago, IL."
+    },
+    {
+        "name": "SheTech Explorer Day (April 12, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A day-long event where high school girls explore STEM careers through hands-on activities and mentoring opportunities. Location: Online."
+    },
+    {
+        "name": "Girls Who Code Summer Immersion Program (June 17 - August 9, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A free, two-week virtual summer program for current 9th-11th grade students to learn coding and get exposure to tech jobs. Location: Online."
+    },
+    {
+        "name": "TechGirls Exchange Program (July 7 - July 28, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "An international exchange program that aims to empower girls from the Middle East and North Africa through STEM education and cultural exchange. Location: Washington, D.C., and various U.S. cities."
+    },
+    {
+        "name": "Introduce a Girl to Engineering Day (February 22, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "Part of National Engineers Week, this event invites young girls to explore engineering through guided activities and mentorship opportunities. Location: Various locations nationwide."
+    },
+    {
+        "name": "Women in Science and Engineering (WISE) Symposium (March 21, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A symposium bringing together leading female scientists and engineers to discuss research, share insights, and network. Location: Online."
+    },
+    {
+        "name": "STEMinist Fair (May 5, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "An online fair providing resources, workshops, and networking opportunities for young women interested in STEM. Location: Online."
+    },
+    {
+        "name": "Ada Lovelace Day Live! (October 17, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "Celebrate women in STEM with talks, performances, and showcases of achievements. Location: Online"
+    },
+    {
+        "name": "Grace Hopper Celebration (October 19-22, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "The world's largest gathering of women in computing. Location: Orlando, Florida"
+    },
+    {
+        "name": "Girlstart STEM Extravaganza (October 21, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "Hands-on STEM experiences for girls of all ages. Location: Austin, Texas"
+    },
+    {
+        "name": "SciFest All Access (October 23-29, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A virtual science festival offering a variety of interactive STEM activities. Location: Online"
+    },
+    {
+        "name": "Society of Women Engineers (SWE) Annual Conference (October 26-28, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "Focused on empowering women in engineering and technology. Location: Los Angeles, California"
+    },
+    {
+        "name": "Girls Who Code Virtual Graduation (October 30, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "Celebrate the success of young girls who have completed coding programs. Location: Online"
+    },
+    {
+        "name": "Women in STEM Conference (November 5, 2023)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A conference dedicated to supporting and connecting women in STEM fields. Location: Online"
+    },
+    {
+        "name": "International Day of Women and Girls in Science (February 11, 2024)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A global celebration recognizing the critical role women and girls play in science and technology. Location: Various locations worldwide and Online"
     }
 ]
