@@ -2,8 +2,21 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Dict
-from backend.aiAgent.stemGirl import createStemGirlAgent, create_initial_state
-import json,os
+from backend.aiAgent.stemGirl import (
+    createStemGirlAgent,
+    create_initial_state,
+    stemGirlConversation,
+)
+import json, os
+from backend.aiAgent.tools.addEvent import addEventTool
+
+addEventTool(
+    name="AI Bootcamp for Girls",
+    date="November 10, 2025",
+    location="Online",
+    description="A virtual AI learning experience for girls interested in machine learning.",
+    link="https://example.com",
+)
 
 app = FastAPI(title="STEMGirl API")
 
@@ -14,9 +27,7 @@ EVENTS_PATH = os.path.join(os.path.dirname(__file__), "../aiAgent/data/events.js
 graph = createStemGirlAgent()
 
 
-# -------------------------------
 # Pydantic models for request/response
-# -------------------------------
 class ChatRequest(BaseModel):
     message: str
 
@@ -62,7 +73,10 @@ def chat_endpoint(req: ChatRequest):
     else:
         result["summary"] = str(result["summary"])
 
+    
+
     # Return structured response
+    #state = stemGirlConversation(state)
     return ChatResponse(
         response=result["response"],
         events=result["events"],

@@ -1,5 +1,6 @@
+# backend/aiAgent/tools/eventRAG.py
 import json
-import os
+import os,re
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains import RetrievalQA
@@ -19,9 +20,9 @@ def createEventRag():
     if not events:
         return None
 
-    # Combine event info for embeddings
+    # Combine event info for embeddings, include link
     eventTexts = [
-        f"{e['name']} ({e['date']} at {e['location']}): {e['description']}"
+        f"{e['name']} ({e['date']} at {e['location']}): {e['description']}\nLink: {e.get('link','')}"
         for e in events
     ]
 
@@ -47,4 +48,18 @@ def queryEvents(question: str):
 
     result = qaChain.invoke({"query": question})
     answer = result.get("result", "")
+
+    # Also attach links if present in source documents
+    sources = result.get("source_documents", [])
+    links = []
+    for doc in sources:
+        text = doc.page_content
+        # Extract URL from text
+        linkMatch = re.search(r"Link:\s*(https?://\S+)", text)
+        if linkMatch:
+            links.append(linkMatch.group(1))
+
+    if links:
+        answer += "\n\nLinks:\n" + "\n".join(links)
+
     return answer if answer else "I couldn't find any matching events."

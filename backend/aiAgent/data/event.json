@@ -1,0 +1,89 @@
+[
+    {
+        "name": "Girls in Tech Catalyst Conference (October 25-26, 2025)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A global conference dedicated to empowering women in technology. Location: Online",
+        "link":""
+
+    },
+    {
+        "name": "She Engineers Summit (November 1, 2025)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A conference focused on women in engineering, offering workshops and networking opportunities. Location: Boston, MA",
+        "link":""
+
+    },
+    {
+        "name": "Women in STEM Leadership Symposium (November 10, 2025)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "An event designed to inspire and cultivate leadership among women in STEM fields. Location: San Francisco, CA",
+        "link":""
+
+    },
+    {
+        "name": "Girls Who Code Winter Immersion Program Application Deadline (November 15, 2025)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A program for high school girls interested in learning computer science skills during the upcoming winter break. Location: Various cities and online options",
+        "link":""
+
+    },
+    {
+        "name": "Tech Together Hackathon (December 6-8, 2025)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "A hackathon aimed at promoting diversity in technology, welcoming students of all skill levels. Location: Online",
+        "link":""
+
+    },
+    {
+        "name": "Society of Women Engineers Annual Conference (December 16-18, 2025)",
+        "date": "TBD",
+        "location": "Online",
+        "description": "The world\u2019s largest conference and career fair for women in engineering and technology. Location: Los Angeles, CA",
+        "link":""
+
+    },
+    {
+        "name": "Girls in STEM Summit 2025",
+        "date": "October 25, 2025",
+        "location": "San Francisco, CA",
+        "description": "A summit dedicated to inspiring and supporting young girls in their pursuit of STEM careers through workshops, networking, and mentorship.",
+        "link":""
+
+    },
+    {
+        "name": "Women in Tech World Series 2025",
+        "date": "November 15, 2025",
+        "location": "Online",
+        "description": "Join an online conference filled with inspiring keynote speakers, panels, and networking opportunities for women in technology.",
+        "link":""
+
+    },
+    {
+        "name": "National STEM Day Celebration",
+        "date": "November 8, 2025",
+        "location": "New York, NY",
+        "description": "Celebrate National STEM Day with activities and exhibitions designed to inspire students of all ages to explore a future in STEM.",
+        "link":""
+
+    },
+    {
+        "name": "Code Girls Hackathon",
+        "date": "December 5, 2025",
+        "location": "Los Angeles, CA",
+        "description": "A day-long hackathon event for girls to code, innovate, and collaborate on projects, with guidance from experienced mentors.",
+        "link":""
+
+    },
+    {
+        "name": "Science Festival 2025",
+        "date": "December 12, 2025",
+        "location": "Boston, MA",
+        "description": "An annual festival that brings science, technology, engineering, and mathematics to people of all ages through exhibits and interactive activities.",
+        "link":""
+    }
+]
