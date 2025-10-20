@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="../logic/welcome.js"/>
 <script>
         tailwind.config = {
             darkMode: "class",
@@ -52,45 +53,39 @@
 <div class="w-full">
 <h2 class="text-xl font-bold text-background-dark dark:text-background-light mb-4 text-center">What are you interested in?</h2>
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200">
+<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200" data-interest="Robotics">
 <svg class="text-primary" fill="currentColor" height="32" viewBox="0 0 256 256" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M200 48H136V16a8 8 0 0 0-16 0V48H56A32 32 0 0 0 24 80V192a32 32 0 0 0 32 32H200a32 32 0 0 0 32-32V80A32 32 0 0 0 200 48Zm16 144a16 16 0 0 1-16 16H56a16 16 0 0 1-16-16V80A16 16 0 0 1 56 64H200a16 16 0 0 1 16 16ZM92 136h72a28 28 0 0 1 0 56H92a28 28 0 0 1 0-56Zm12 40h48v-24H104Zm-24-28a12 12 0 1 0 12 12 12 12 0 0 0-12-12Zm88 0a12 12 0 1 0 12 12 12 12 0 0 0-12-12ZM72 108a12 12 0 1 1 12 12 12 12 0 0 1-12-12Zm88 0a12 12 0 1 1 12 12 12 12 0 0 1-12-12Z"></path></svg>
 <span class="font-semibold text-sm">Robotics</span>
 </button>
-<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200">
+<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200" data-interest="AI">
 <svg class="text-primary" fill="currentColor" height="32" viewBox="0 0 256 256" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M221.69 199.77 160 96.92V40h8a8 8 0 0 0 0-16H88a8 8 0 0 0 0 16h8V96.92L34.31 199.77A16 16 0 0 0 48 224H208a16 16 0 0 0 13.72-24.23ZM112 99.14a7.93 7.93 0 0 1 1.14-4.11L112 96.92V40h32v56.92l-.01.01a7.93 7.93 0 0 1 1.15 4.11L183.36 167c-12 2.37-29.07 1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48 208l28.54-47.58c14.25-1.74 30.31 1.85 47.82 10.72 19 9.61 35 12.88 48 12.88a69.89 69.89 0 0 0 19.55-2.7L208 208Z"></path></svg>
-<span class="font-semibold text-sm">Chemistry</span>
+<span class="font-semibold text-sm">AI</span>
 </button>
-<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200">
+<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200" data-interest="Coding">
 <svg class="text-primary" fill="currentColor" height="32" viewBox="0 0 256 256" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M69.12 94.15 28.5 128l40.62 33.85a8 8 0 1 1-10.24 12.29l-48-40a8 8 0 0 1 0-12.29l48-40a8 8 0 0 1 10.24 12.3Zm176 27.7-48-40a8 8 0 1 0-10.24 12.3L227.5 128l-40.62 33.85a8 8 0 1 0 10.24 12.29l48-40a8 8 0 0 0 0-12.29ZM162.73 32.48a8 8 0 0 0-10.25 4.79l-64 176a8 8 0 0 0 4.79 10.26A8.14 8.14 0 0 0 96 224a8 8 0 0 0 7.52-5.27l64-176a8 8 0 0 0-4.79-10.25Z"></path></svg>
 <span class="font-semibold text-sm">Coding</span>
 </button>
-<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200 selected">
+<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200 " data-interest="Data analytics">
 <svg class="text-primary" fill="currentColor" height="32" viewBox="0 0 256 256" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M220.27 158.54a8 8 0 0 0-7.7-.46 20 20 0 1 1 0-36.16A8 8 0 0 0 224 114.69V72a16 16 0 0 0-16-16H171.78a35.36 35.36 0 0 0 .22-4 36.11 36.11 0 0 0-11.36-26.24 36 36 0 0 0-60.55 23.62 36.56 36.56 0 0 0 .14 6.62H64A16 16 0 0 0 48 72v32.22a35.36 35.36 0 0 0-4-.22 36.12 36.12 0 0 0-26.24 11.36 35.7 35.7 0 0 0-9.69 27 36.08 36.08 0 0 0 33.31 33.6 35.68 35.68 0 0 0 6.62-.14V208a16 16 0 0 0 16 16H208a16 16 0 0 0 16-16V165.31A8 8 0 0 0 220.27 158.54ZM208 208H64v-42.69a8 8 0 0 0-11.43-7.23 20 20 0 1 1 0-36.16A8 8 0 0 0 64 114.69V72h46.69a8 8 0 0 0 7.23-11.43 20 20 0 1 1 36.16 0A8 8 0 0 0 161.31 72H208v32.23a35.68 35.68 0 0 0-6.62-.14A36 36 0 0 0 204 176a35.36 35.36 0 0 0 4-.22Z"></path></svg>
-<span class="font-semibold text-sm">Engineering</span>
+<span class="font-semibold text-sm">Data Analytics</span>
 </button>
-<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200">
+<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200" data-interest="Others">
 <svg class="text-primary" fill="currentColor" height="32" viewBox="0 0 256 256" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M232 208a8 8 0 0 1-8 8H32a8 8 0 0 1-8-8V48a8 8 0 0 1 16 0v94.37L90.73 98a8 8 0 0 1 10.07-.38l58.81 44.11L218.73 90a8 8 0 1 1 10.54 12l-64 56a8 8 0 0 1-10.07.38L96.39 114.29 40 163.63V200H224a8 8 0 0 1 8 8Z"></path></svg>
-<span class="font-semibold text-sm">Data Science</span>
+<span class="font-semibold text-sm">Others</span>
 </button>
-<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200">
+<button class="interest-button flex flex-col items-center justify-center p-4 space-y-2 rounded-lg border border-background-dark/10 dark:border-background-light/10 text-background-dark dark:text-background-light transition-colors duration-200" data-interest="Environmental Science">
 <svg class="text-primary" fill="currentColor" height="32" viewBox="0 0 256 256" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M128 24A104 104 0 1 0 232 128 104.11 104.11 0 0 0 128 24ZM40 128a87.61 87.61 0 0 1 3.33-24H81.79a161.79 161.79 0 0 0 0 48H43.33A87.61 87.61 0 0 1 40 128Zm88 88.11c-12-13-21-29.53-26.37-48.11h52.74c-5.37 18.58-14.37 35.11-26.37 48.11Zm26.37-64.11H101.63a145.72 145.72 0 0 0 0-48h52.74a145.72 145.72 0 0 0 0 48Zm-26.37-64.11c12-13 21-29.53 26.37-48.11h-52.74c5.37 18.58 14.37 35.11 26.37 48.11ZM174.21 104a161.79 161.79 0 0 0 0 48h38.46a88.15 88.15 0 0 0 0-48ZM150.68 43a88.37 88.37 0 0 0-45.36 0 142.39 142.39 0 0 1 20.26 45h50.18a142.39 142.39 0 0 1 20.26-45Zm-45.36 170a88.37 88.37 0 0 0 45.36 0 142.39 142.39 0 0 1-20.26-45H105.32a142.39 142.39 0 0 1-20.26 45ZM49.63 88h35.43a142.39 142.39 0 0 1-20.26 45A88.37 88.37 0 0 0 49.63 88Zm0 80a88.37 88.37 0 0 0 55.7-45 142.39 142.39 0 0 1-20.26-45H49.63Z"></path></svg>
 <span class="font-semibold text-sm text-center">Environmental Science</span>
 </button>
 </div>
 </div>
 <div class="w-full max-w-xs">
-<button class="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/50 transition-all duration-300 transform hover:scale-105">
+<button class="w-full bg-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/50 transition-all duration-300 transform hover:scale-105" id="continue-btn">
                     Continue
                 </button>
 </div>
 </div>
 </div>
-<script>
-        document.querySelectorAll('.interest-button').forEach(button => {
-            button.addEventListener('click', () => {
-                button.classList.toggle('selected');
-            });
-        });
-    </script>
-
-</body></html>
+<script src="../logic/welcome.js"></script>
+</body>
+</html>

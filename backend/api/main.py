@@ -10,13 +10,6 @@ from backend.aiAgent.stemGirl import (
 import json, os
 from backend.aiAgent.tools.addEvent import addEventTool
 
-addEventTool(
-    name="AI Bootcamp for Girls",
-    date="November 10, 2025",
-    location="Online",
-    description="A virtual AI learning experience for girls interested in machine learning.",
-    link="https://example.com",
-)
 
 app = FastAPI(title="STEMGirl API")
 
