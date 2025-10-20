@@ -9,9 +9,33 @@ from backend.aiAgent.stemGirl import (
 )
 import json, os
 from backend.aiAgent.tools.addEvent import addEventTool
-
+from fastapi import FastAPI,Request
+from fastapi.middleware.cors import CORSMiddleware
+from backend.api.state import userContext
 
 app = FastAPI(title="STEMGirl API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.post("/set-interest")
+async def set_interest(request: Request):
+    data = await request.json()
+    interest = data.get("interest")
+    if not interest:
+        return {"success": False, "error": "No interest provided"}
+
+    # You can store it in memory, DB, or even in an agent state
+    userContext["interest"] = interest
+    print(f"🎯 User interest stored: {interest}")
+    return {"success": True, "interest": interest}
+
 
 EVENTS_PATH = os.path.join(os.path.dirname(__file__), "../aiAgent/data/events.json")
 

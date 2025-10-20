@@ -12,14 +12,36 @@ buttons.forEach(btn => {
 });
 
 // Handle continue button
-document.getElementById('continue-btn').addEventListener('click', () => {
+document.getElementById('continue-btn').addEventListener('click', async () => {
     if (!selectedInterest) {
         alert("Please select an interest to continue!");
         return;
     }
-    // Store the interest for chat page (can also use sessionStorage)
-    localStorage.setItem("userInterest", selectedInterest);
 
-    // Redirect to chat interface
-    window.location.href = "chatInterface.html"; 
+    try {
+        //Send the selected interest to backend
+        const response = await fetch("http://127.0.0.1:8000/set-interest", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ interest: selectedInterest }),
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            console.log("Interest stored in backend:", data.interest);
+
+            // Save locally as well
+            localStorage.setItem("userInterest", selectedInterest);
+
+            // Redirect to chat interface
+            window.location.href = "chatInterface.html";
+        } else {
+            alert("Failed to store interest on server.");
+        }
+    } catch (err) {
+        console.error("❌ Error sending interest to API:", err);
+        alert("Something went wrong. Please try again.");
+    }
 });

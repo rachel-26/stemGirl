@@ -17,6 +17,7 @@ from backend.aiAgent.mentorMatch import suggestMentors
 from backend.aiAgent.opportunityFinder import findOpportunities
 from backend.aiAgent.summarizer import summarizeResults
 from backend.aiAgent.tools.eventRAG import queryEvents
+from backend.api.state import userContext
 
 
 # -----------------------------
@@ -76,16 +77,18 @@ def parse_events_from_text(text: str) -> List[Dict]:
 def stemGirlConversation(state: STEMGirlState) -> STEMGirlState:
     userMessage = state["messages"][-1] if state["messages"] else ""
     msgLower = userMessage.lower()
+    userInterest = userContext.get("interest", "STEM")
+    print(f"The Current user interest :{userInterest}")
 
     # Initialize LLM
     llm = init_chat_model(model="gpt-4o", model_provider="openai")
     today = datetime.now().strftime("%B %d, %Y")
 
     # Prompt
-    promptText = f"""
+    promptText = f""" The user is interested in {userInterest}
 You are STEMGirl — an AI mentor guiding girls in STEM.
 You answer questions kindly, provide useful resources, and
-guide them to events, opportunities, or mentors when needed.
+guide them to events, opportunities, or mentors when needed relevant to their interest.
 
 Today is {today}. When listing events, always give upcoming events (dates after today) in the future, not past events.
 Include event name, exact date (month, day, year), and optionally location.
@@ -134,20 +137,25 @@ STEMGirl:
                 eventsToAdd = []
 
             if eventsToAdd:
-                savedEvents = [addEventTool(
-                    e.get("name", "Unnamed Event"),
-                    e.get("date", "TBD"),
-                    e.get("location", "Online"),
-                    e.get("description", ""),
-                    e.get("link", ""),
-                ) for e in eventsToAdd]
-                state["events"].extend([f"{e['name']} saved to JSON!" for e in savedEvents])
+                savedEvents = [
+                    addEventTool(
+                        e.get("name", "Unnamed Event"),
+                        e.get("date", "TBD"),
+                        e.get("location", "Online"),
+                        e.get("description", ""),
+                        e.get("link", ""),
+                    )
+                    for e in eventsToAdd
+                ]
+                state["events"].extend(
+                    [f"{e['name']} saved to JSON!" for e in savedEvents]
+                )
 
         else:
             state["events"].append(
                 "Failed to parse events from LLM output. Ensure the response is valid JSON."
             )
-            
+
             print("Extracted JSON text:\n", jsonText)
             print("Parsed events:\n", eventsToAdd)
 
@@ -204,7 +212,7 @@ if __name__ == "__main__":
     state = stemGirlConversation(state)
 
     print("Response:\n", state["response"])
-       
+
 
 # print("\nEvents:\n", state["events"])
 # print("\nOpportunities:\n", state["opportunities"])
