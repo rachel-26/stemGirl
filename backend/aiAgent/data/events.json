@@ -152,5 +152,40 @@
         "location": "Online",
         "description": "An online summit to connect young women with leaders in Environmental Science to discuss leadership and career paths.",
         "link": "https://womensstemsummit.org"
+    },
+    {
+        "name": "Girls Who Code: Virtual Summer Immersion Program",
+        "date": "June 1, 2026",
+        "location": "Online",
+        "description": "An introductory coding program where high school girls learn the basics of computer science and work on collaborative projects.",
+        "link": "https://www.girlswhocode.com/summer-immersion-programs"
+    },
+    {
+        "name": "Technovation Girls 2026",
+        "date": "October 28, 2025",
+        "location": "Online",
+        "description": "A global tech entrepreneurship competition where girls identify a problem in their community and build a mobile app solution.",
+        "link": "https://technovationchallenge.org/"
+    },
+    {
+        "name": "Black Girls CODE Hackathon",
+        "date": "November 10, 2025",
+        "location": "San Francisco, CA",
+        "description": "A hackathon aimed at empowering African American girls to become innovators in STEM fields by building their own apps and digital tools.",
+        "link": "https://www.blackgirlscode.com/"
+    },
+    {
+        "name": "Girls in Tech - Hacking for Humanity",
+        "date": "December 5, 2025",
+        "location": "Online",
+        "description": "A hackathon focused on building technological solutions that address social, environmental, and humanitarian issues.",
+        "link": "https://girlsintech.org/hacking-for-humanity/"
+    },
+    {
+        "name": "She Can STEM: Winter Coding Bootcamp",
+        "date": "January 15, 2026",
+        "location": "Virtual",
+        "description": "A week-long intensive bootcamp where girls can learn coding languages such as Python and JavaScript.",
+        "link": "https://shecanstem.com/bootcamp"
     }
 ]

@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>SheTech Connect AI</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <style>
     body {
         background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e4e4e7' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -17,63 +18,134 @@
     }
 </style>
 <script>
-tailwind.config = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        "primary": "#6050f1",
-        "background-light": "#f6f6f8",
-        "background-dark": "#121022",
-      },
-      fontFamily: { "display": ["Inter"] },
-      borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
-    },
-  },
-}
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#6050f1",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#121022",
+                },
+                fontFamily: {
+                    "display": ["Inter"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.5rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
 </script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
-<div class="flex flex-col h-screen">
 
-  <!-- Main Chat Area -->
-  <main class="flex-grow flex flex-col items-center py-8 overflow-hidden">
-    <div id="chat-container" class="w-full max-w-4xl flex-grow flex flex-col space-y-6 px-4 overflow-y-auto">
-      <!-- Chat messages will be dynamically inserted by chatAgent.js -->
-
-      <!-- Example bot typing animation structure -->
-      <div class="flex items-start gap-4 max-w-xl">
-        <div class="w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/30 flex-shrink-0 flex items-center justify-center">
-          <!-- Bot Avatar -->
-          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 013.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09z" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
+<!-- Sidebar -->
+<div class="fixed inset-y-0 left-0 w-64 bg-background-light dark:bg-background-dark border-r border-gray-200 dark:border-gray-800 z-30 flex flex-col p-6">
+    <div class="flex-grow">
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-600 flex-shrink-0 flex items-center justify-center">
+                <svg class="w-8 h-8 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </div>
+            <div>
+                <h2 class="font-bold text-lg text-gray-900 dark:text-white">Amelia Chen</h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400">High School Student</p>
+            </div>
         </div>
-        <div class="bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md">
-          <div class="flex items-center space-x-1">
-            <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.3s;"></div>
-            <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.15s;"></div>
-            <div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-          </div>
+        <nav class="flex flex-col space-y-2">
+            <a class="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 bg-primary/10 dark:bg-primary/20 rounded-lg font-semibold text-primary" href="#">
+                <span class="material-symbols-outlined">home</span>
+                <span>Home</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+                <span class="material-symbols-outlined">bookmark</span>
+                <span>Saved Opportunities</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+                <span class="material-symbols-outlined">info</span>
+                <span>About</span>
+            </a>
+        </nav>
+    </div>
+    <div class="space-y-4">
+        <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors" href="#">
+            <span class="material-symbols-outlined">logout</span>
+            <span>Log Out</span>
+        </a>
+        <div class="border-t border-gray-200 dark:border-gray-800 pt-4">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">© 2023 SheTech Connect. All rights reserved.</p>
+            <div class="flex space-x-4">
+                <!-- Social Icons -->
+            </div>
         </div>
-      </div>
-
     </div>
-  </main>
+</div>
 
-  <!-- Footer Input -->
-  <footer class="sticky bottom-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-    <div class="max-w-4xl mx-auto p-4">
-      <div class="relative">
-        <input id="chat-input" class="w-full bg-gray-200 dark:bg-gray-800 border-transparent focus:border-primary focus:ring-primary rounded-lg py-3 pl-4 pr-12 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-shadow duration-200 shadow-sm focus:shadow-lg" placeholder="Type your message..." type="text"/>
-        <button id="chat-send" class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-white bg-primary rounded-r-lg hover:bg-primary/90 transition-colors">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </footer>
+<!-- Main Content Wrapper -->
+<div class="flex flex-col h-screen flex-1 ml-64">
+
+    <!-- Header -->
+    <header class="bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 sticky top-0 z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.5 14.5L14 10l-1.5 4.5L9 10l-1.5 4.5M10 18.5a.5.5 0 100-1 .5.5 0 000 1zM3 21V3a2 2 0 012-2h14a2 2 0 012 2v18a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        </svg>
+                        <span class="text-xl font-bold text-gray-900 dark:text-white">SheTech Connect AI</span>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Chat Area -->
+    <main class="flex-grow flex flex-col py-8 overflow-hidden">
+        <div id="chat-container" class="w-full max-w-4xl flex-grow flex flex-col space-y-6 px-4 overflow-y-auto">
+            <!-- Example bot typing animation structure -->
+            <div class="flex items-start gap-4 max-w-xl">
+                <div class="w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/30 flex-shrink-0 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 013.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div class="bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md">
+                    <div class="flex items-center space-x-1">
+                        <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.3s;"></div>
+                        <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.15s;"></div>
+                        <div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Input -->
+    <footer class="sticky bottom-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+        <div class="max-w-4xl mx-auto p-4">
+            <div class="relative">
+                <input id="chat-input" class="w-full bg-gray-200 dark:bg-gray-800 border-transparent focus:border-primary focus:ring-primary rounded-lg py-3 pl-4 pr-12 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-shadow duration-200 shadow-sm focus:shadow-lg" placeholder="Type your message..." type="text"/>
+                <button id="chat-send" class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-white bg-primary rounded-r-lg hover:bg-primary/90 transition-colors">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </footer>
 
 </div>
 
