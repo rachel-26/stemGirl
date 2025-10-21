@@ -33,5 +33,96 @@
         "location": "Online",
         "description": "A one-day workshop focused on teaching girls foundational skills in coding and programming.",
         "link": "https://codelikeagirlworkshop.org"
+    },
+    {
+        "name": "AI4Good Summit",
+        "date": "November 5, 2025",
+        "location": "Online",
+        "description": "A global summit discussing the impact of AI on social good.",
+        "link": "https://www.ai4good.com/summit"
+    },
+    {
+        "name": "Women in AI Conference",
+        "date": "November 20, 2025",
+        "location": "San Francisco, CA",
+        "description": "An inspiring conference focused on the contributions of women in the field of AI.",
+        "link": "https://www.womeninaiconf.org"
+    },
+    {
+        "name": "AI Expo North America",
+        "date": "December 9, 2025",
+        "location": "Santa Clara, CA",
+        "description": "A major AI conference showcasing the latest advancements and innovations.",
+        "link": "https://www.ai-expo.net/northamerica"
+    },
+    {
+        "name": "International Conference on Machine Learning and Big Data",
+        "date": "January 15, 2026",
+        "location": "New York, NY",
+        "description": "Explore the latest research in AI, machine learning, and big data.",
+        "link": "https://www.icmlbd.org"
+    },
+    {
+        "name": "Girls in AI Hackathon 2025",
+        "date": "November 15, 2025",
+        "location": "Online",
+        "description": "A 48-hour hackathon where girls from around the world collaborate to create AI solutions for social good.",
+        "link": "https://girlsinaihackathon.com"
+    },
+    {
+        "name": "AI Scholars Program - Winter 2025",
+        "date": "December 1, 2025",
+        "location": "New York City, NY",
+        "description": "A prestigious bootcamp designed for high school girls interested in AI, offering workshops and mentorship from leading experts.",
+        "link": "https://aischolarsprogram.com"
+    },
+    {
+        "name": "Women in AI & Machine Learning Conference 2025",
+        "date": "January 30, 2026",
+        "location": "San Francisco, CA",
+        "description": "A conference focusing on the latest advancements in AI and Machine Learning, with sessions led by women in the industry.",
+        "link": "https://womeninai-conference.com"
+    },
+    {
+        "name": "Teen Girls AI Design Challenge",
+        "date": "February 10, 2026",
+        "location": "Online",
+        "description": "A competition encouraging teenage girls to develop innovative AI-powered projects and solutions.",
+        "link": "https://teengirlsaichallenge.com"
+    },
+    {
+        "name": "International Day of Women and Girls in Science AI Summit 2026",
+        "date": "February 11, 2026",
+        "location": "Toronto, Canada",
+        "description": "A summit celebrating women and girls in science with a focus on AI-related achievements and workshops.",
+        "link": "https://womenandscienceaisummit.com"
+    },
+    {
+        "name": "Girls in Robotics: Innovate and Build Challenge",
+        "date": "November 12, 2025",
+        "location": "Online",
+        "description": "A virtual competition designed for girls aged 12-18 to explore robotics through innovative projects.",
+        "link": "https://www.girlsroboticschallenge.org"
+    },
+    {
+        "name": "RoboGals Coding & Robotics Bootcamp",
+        "date": "November 20-22, 2025",
+        "location": "San Francisco, CA",
+        "description": "An immersive bootcamp for girls to learn robotics coding, design, and teamwork with hands-on sessions.",
+        "link": "https://www.robogals.org/bootcamp"
+    },
+    {
+        "name": "Women in Robotics Hackathon",
+        "date": "December 5-6, 2025",
+        "location": "Online",
+        "description": "Join women from around the world to tackle robotics-related challenges and learn from industry leaders.",
+        "link": "https://www.womeninrobotics.com/hackathon"
+    },
+    {
+        "name": "FIRST Tech Challenge - Girls in STEM League",
+        "date": "January 15, 2026",
+        "location": "New York, NY",
+        "description": "A specialized league within the FIRST Tech Challenge focused on encouraging girls in STEM through robotics competitions.",
+        "link": "https://www.firstinspires.org/girlsinstem"
     }
 ]

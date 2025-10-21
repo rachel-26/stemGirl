@@ -35,13 +35,18 @@ document.getElementById('continue-btn').addEventListener('click', async () => {
             // Save locally as well
             localStorage.setItem("userInterest", selectedInterest);
 
+            //Fire the background event generator (no await)
+        import("./autoEventGenerator.js")
+            .then(module => module.generateEvents(selectedInterest))
+            .catch(err => console.error("Could not start event generator:", err));
+
             // Redirect to chat interface
             window.location.href = "chatInterface.html";
         } else {
             alert("Failed to store interest on server.");
         }
     } catch (err) {
-        console.error("❌ Error sending interest to API:", err);
+        console.error("Error sending interest to API:", err);
         alert("Something went wrong. Please try again.");
     }
 });
