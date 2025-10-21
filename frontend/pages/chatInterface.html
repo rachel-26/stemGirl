@@ -1,126 +1,83 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SheTech Connect AI</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
     body {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e4e4e7' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e4e4e7' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
     .dark body {
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-  </style>
+</style>
 <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#6050f1",
-            "background-light": "#f6f6f8",
-            "background-dark": "#121022",
-          },
-          fontFamily: {
-            "display": ["Inter"]
-          },
-          borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
-        },
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#6050f1",
+        "background-light": "#f6f6f8",
+        "background-dark": "#121022",
       },
-    }
-  </script>
+      fontFamily: { "display": ["Inter"] },
+      borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+    },
+  },
+}
+</script>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
 <div class="flex flex-col h-screen">
-<main class="flex-grow flex flex-col items-center py-8">
-<div class="w-full max-w-4xl flex-grow flex flex-col space-y-6 px-4">
-<div class="flex items-start gap-4 max-w-xl">
-<div class="w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/30 flex-shrink-0 flex items-center justify-center">
-<svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 013.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.67-2.67L11.25 18l1.938-.648a3.375 3.375 0 002.67-2.67L16.75 13.5l.648 1.938a3.375 3.375 0 002.67 2.67L22.5 18l-1.938.648a3.375 3.375 0 00-2.67 2.67z" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</div>
-<div class="flex flex-col items-start">
-<span class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">SheTech Connect AI</span>
-<div class="bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md">
-<p>Hi there! I'm your SheTech Connect AI assistant. How can I help you today?</p>
-</div>
-</div>
-</div>
-<div class="flex items-start gap-4 max-w-xl self-end">
-<div class="flex flex-col items-end">
-<span class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">You</span>
-<div class="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg rounded-tr-none max-w-md">
-<p class="text-gray-800 dark:text-gray-200">Hi! I'm looking for STEM competitions for high school students.</p>
-</div>
-</div>
-<div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex-shrink-0 flex items-center justify-center">
-<svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</div>
-</div>
-<div class="flex items-start gap-4 max-w-xl">
-<div class="w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/30 flex-shrink-0 flex items-center justify-center">
-<svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 013.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.67-2.67L11.25 18l1.938-.648a3.375 3.375 0 002.67-2.67L16.75 13.5l.648 1.938a3.375 3.375 0 002.67 2.67L22.5 18l-1.938.648a3.375 3.375 0 00-2.67 2.67z" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</div>
-<div class="flex flex-col items-start">
-<span class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">SheTech Connect AI</span>
-<div class="bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md">
-<p>Great! To help me narrow down the options, could you tell me what areas of STEM you're most interested in?</p>
-</div>
-</div>
-</div>
-<div class="flex items-start gap-4 max-w-xl self-end">
-<div class="flex flex-col items-end">
-<span class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">You</span>
-<div class="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg rounded-tr-none max-w-md">
-<p class="text-gray-800 dark:text-gray-200">I'm really into robotics and coding.</p>
-</div>
-</div>
-<div class="w-10 h-10 rounded-full bg-gray-300 dark:bg-gray-600 flex-shrink-0 flex items-center justify-center">
-<svg class="w-6 h-6 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</div>
-</div>
-<div class="flex items-start gap-4 max-w-xl">
-<div class="w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/30 flex-shrink-0 flex items-center justify-center">
-<svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 013.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.562L16.25 22.5l-.648-1.938a3.375 3.375 0 00-2.67-2.67L11.25 18l1.938-.648a3.375 3.375 0 002.67-2.67L16.75 13.5l.648 1.938a3.375 3.375 0 002.67 2.67L22.5 18l-1.938.648a3.375 3.375 0 00-2.67 2.67z" stroke-linecap="round" stroke-linejoin="round"></path>
-</svg>
-</div>
-<div class="flex flex-col items-start">
-<span class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">SheTech Connect AI is typing...</span>
-<div class="bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md">
-<div class="flex items-center space-x-1">
-<div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.3s;"></div>
-<div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.15s;"></div>
-<div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<footer class="sticky bottom-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
-<div class="max-w-4xl mx-auto p-4">
-<div class="relative">
-<input class="w-full bg-gray-200 dark:bg-gray-800 border-transparent focus:border-primary focus:ring-primary rounded-lg py-3 pl-4 pr-12 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-shadow duration-200 shadow-sm focus:shadow-lg" placeholder="Type your message..." type="text"/>
-<button class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-white bg-primary rounded-r-lg hover:bg-primary/90 transition-colors">
-<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</div>
-</div>
-</footer>
+
+  <!-- Main Chat Area -->
+  <main class="flex-grow flex flex-col items-center py-8 overflow-hidden">
+    <div id="chat-container" class="w-full max-w-4xl flex-grow flex flex-col space-y-6 px-4 overflow-y-auto">
+      <!-- Chat messages will be dynamically inserted by chatAgent.js -->
+
+      <!-- Example bot typing animation structure -->
+      <div class="flex items-start gap-4 max-w-xl">
+        <div class="w-10 h-10 rounded-full bg-primary/20 dark:bg-primary/30 flex-shrink-0 flex items-center justify-center">
+          <!-- Bot Avatar -->
+          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 01-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 013.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 013.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 01-3.09 3.09z" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <div class="bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md">
+          <div class="flex items-center space-x-1">
+            <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.3s;"></div>
+            <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.15s;"></div>
+            <div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer Input -->
+  <footer class="sticky bottom-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+    <div class="max-w-4xl mx-auto p-4">
+      <div class="relative">
+        <input id="chat-input" class="w-full bg-gray-200 dark:bg-gray-800 border-transparent focus:border-primary focus:ring-primary rounded-lg py-3 pl-4 pr-12 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-shadow duration-200 shadow-sm focus:shadow-lg" placeholder="Type your message..." type="text"/>
+        <button id="chat-send" class="absolute inset-y-0 right-0 flex items-center justify-center w-12 h-full text-white bg-primary rounded-r-lg hover:bg-primary/90 transition-colors">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
 </div>
 
-</body></html>
+<!-- External JS -->
+<script type="module" src="../logic/chatAgent.js"></script>
+</body>
+</html>

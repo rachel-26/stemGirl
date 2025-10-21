@@ -1,6 +1,6 @@
 
 export async function generateEvents(interest) {
-    console.log(`🚀 Auto event generation started for: ${interest}`);
+    console.log(`Auto event generation started for: ${interest}`);
 
     try {
         const res = await fetch("http://127.0.0.1:8000/chat", {
@@ -14,9 +14,9 @@ export async function generateEvents(interest) {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
         const data = await res.json();
-        console.log(`✅ Auto events generated for ${interest}:`, data.events?.length || 0);
+        console.log(` Auto events generated for ${interest}:`, data.events?.length || 0);
 
     } catch (error) {
-        console.error("❌ Error during auto event generation:", error);
+        console.error(" Error during auto event generation:", error);
     }
 }

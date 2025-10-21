@@ -124,5 +124,33 @@
         "location": "New York, NY",
         "description": "A specialized league within the FIRST Tech Challenge focused on encouraging girls in STEM through robotics competitions.",
         "link": "https://www.firstinspires.org/girlsinstem"
+    },
+    {
+        "name": "Green Innovators Hackathon",
+        "date": "November 15-17, 2025",
+        "location": "Online",
+        "description": "A virtual hackathon where girls collaborate to create innovative solutions addressing environmental challenges.",
+        "link": "https://greeninnovatorshackathon.org"
+    },
+    {
+        "name": "Girls in Environmental Science Bootcamp",
+        "date": "December 3-5, 2025",
+        "location": "San Francisco, CA",
+        "description": "An immersive bootcamp designed for girls interested in pursuing careers in Environmental Science, featuring workshops and discussions with leading scientists.",
+        "link": "https://gesbootcamp.org"
+    },
+    {
+        "name": "Eco-Science Fair for Girls",
+        "date": "February 10, 2026",
+        "location": "New York, NY",
+        "description": "A fair showcasing science projects by young female scientists focusing on environmental science and sustainability.",
+        "link": "https://ecosf.com"
+    },
+    {
+        "name": "Women in STEM: Environmental Leadership Summit",
+        "date": "March 15-17, 2026",
+        "location": "Online",
+        "description": "An online summit to connect young women with leaders in Environmental Science to discuss leadership and career paths.",
+        "link": "https://womensstemsummit.org"
     }
 ]
