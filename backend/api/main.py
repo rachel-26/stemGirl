@@ -12,6 +12,8 @@ from backend.aiAgent.tools.addEvent import addEventTool
 from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from backend.api.state import userContext
+from backend.api import chatAgent
+
 
 app = FastAPI(title="STEMGirl API")
 
@@ -115,3 +117,6 @@ def get_events():
         events = json.load(f)
 
     return {"events": events}
+
+# Include the chat agent routes
+app.include_router(chatAgent.router)

@@ -5,10 +5,10 @@ const chatBox = document.getElementById("chat-container");
 const inputField = document.querySelector("footer input");
 const sendBtn = document.querySelector("footer button");
 
-// Load user interest if stored
+// Load user interest (optional)
 const userInterest = localStorage.getItem("userInterest") || "STEM";
 
-// Append a message to the chat
+// Append message to chat
 function appendMessage(sender, text) {
   const wrapper = document.createElement("div");
   wrapper.classList.add("flex", "items-start", "gap-4", "max-w-xl");
@@ -25,6 +25,7 @@ function appendMessage(sender, text) {
     sender === "user"
       ? "bg-gray-200 dark:bg-gray-700 p-4 rounded-lg rounded-tr-none max-w-md text-gray-800 dark:text-gray-200"
       : "bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md";
+
   messageContainer.textContent = text;
 
   wrapper.appendChild(avatar);
@@ -33,15 +34,30 @@ function appendMessage(sender, text) {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+// Typing indicator
+function showTyping() {
+  const typingDiv = document.createElement("div");
+  typingDiv.className =
+    "bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md flex space-x-1";
+  typingDiv.innerHTML = `
+    <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.3s;"></div>
+    <div class="w-2 h-2 bg-white rounded-full animate-bounce" style="animation-delay: -0.15s;"></div>
+    <div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+  `;
+  chatBox.appendChild(typingDiv);
+  chatBox.scrollTop = chatBox.scrollHeight;
+  return typingDiv;
+}
+
 // Initial greeting
 function greetUser() {
   appendMessage(
     "bot",
-    `👋 Hi! I’ve pulled some ${userInterest} events for you. Ask me anything or explore opportunities.`
+    `👋 Hi there! I’ve already prepared some ${userInterest} content for you. Feel free to chat or ask me anything.`
   );
 }
 
-// Send user message to backend
+// Send message to backend
 async function sendMessage() {
   const message = inputField.value.trim();
   if (!message) return;
@@ -51,16 +67,10 @@ async function sendMessage() {
   inputField.disabled = true;
   sendBtn.disabled = true;
 
-  // Typing indicator
-  const typingDiv = document.createElement("div");
-  typingDiv.className =
-    "bg-gradient-to-br from-primary/80 to-primary/60 text-white p-4 rounded-lg rounded-tl-none max-w-md";
-  typingDiv.textContent = "SheTech Connect AI is typing...";
-  chatBox.appendChild(typingDiv);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  const typingDiv = showTyping();
 
   try {
-    const response = await fetch("http://127.0.0.1:8000/chat", {
+    const response = await fetch("http://127.0.0.1:8000/chatAgent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message }),
@@ -69,20 +79,11 @@ async function sendMessage() {
     const data = await response.json();
     chatBox.removeChild(typingDiv);
 
-    // Show AI response
     appendMessage("bot", data.response || "Sorry, I didn't understand that.");
-
-    // Optional: You can also show structured info like events, opportunities
-    if (data.events && data.events.length > 0) {
-      appendMessage(
-        "bot",
-        ` I found ${data.events.length} events related to ${userInterest}.`
-      );
-    }
   } catch (err) {
     console.error("Chat API error:", err);
     chatBox.removeChild(typingDiv);
-    appendMessage("bot", "I couldn't reach the server. Try again.");
+    appendMessage("bot", "⚠️ I couldn't reach the server. Please try again.");
   } finally {
     inputField.disabled = false;
     sendBtn.disabled = false;
