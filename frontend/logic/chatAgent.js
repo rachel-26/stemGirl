@@ -83,7 +83,7 @@ async function sendMessage() {
   } catch (err) {
     console.error("Chat API error:", err);
     chatBox.removeChild(typingDiv);
-    appendMessage("bot", "⚠️ I couldn't reach the server. Please try again.");
+    appendMessage("bot", "I couldn't reach the server. Please try again.");
   } finally {
     inputField.disabled = false;
     sendBtn.disabled = false;

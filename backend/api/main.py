@@ -13,6 +13,7 @@ from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from backend.api.state import userContext
 from backend.api import chatAgent
+from fastapi.responses import JSONResponse
 
 
 app = FastAPI(title="STEMGirl API")
@@ -40,6 +41,9 @@ async def set_interest(request: Request):
 
 
 EVENTS_PATH = os.path.join(os.path.dirname(__file__), "../aiAgent/data/events.json")
+BASE_DIR = os.path.dirname(__file__)
+EVENTS_FILE = os.path.join(BASE_DIR, "../aiAgent/data/events.json")
+SAVED_EVENTS_FILE = os.path.join(BASE_DIR, "../aiAgent/data/savedEvents.json")
 
 
 # Initialize the agent once
@@ -117,6 +121,25 @@ def get_events():
         events = json.load(f)
 
     return {"events": events}
+
+
+@app.get("/getEvents")
+async def get_events():
+    if not os.path.exists(EVENTS_FILE):
+        return JSONResponse([])
+    with open(EVENTS_FILE, "r") as f:
+        events = json.load(f)
+    return JSONResponse(events)
+
+
+@app.get("/saved-events")
+async def get_saved_events():
+    if not os.path.exists(SAVED_EVENTS_FILE):
+        return JSONResponse([])
+    with open(SAVED_EVENTS_FILE, "r") as f:
+        saved_events = json.load(f)
+    return JSONResponse(saved_events)
+
 
 # Include the chat agent routes
 app.include_router(chatAgent.router)

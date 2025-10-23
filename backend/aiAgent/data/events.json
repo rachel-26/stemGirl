@@ -187,5 +187,278 @@
         "location": "Virtual",
         "description": "A week-long intensive bootcamp where girls can learn coding languages such as Python and JavaScript.",
         "link": "https://shecanstem.com/bootcamp"
+    },
+    {
+        "name": "Girls in Environmental Science Competition",
+        "date": "November 15, 2025",
+        "location": "Online",
+        "description": "A competition for young women to present innovative solutions for environmental sustainability challenges.",
+        "link": "https://www.gesc2025.org"
+    },
+    {
+        "name": "Eco Hackathon",
+        "date": "December 3-5, 2025",
+        "location": "San Francisco, CA",
+        "description": "A hackathon focusing on developing tech-driven solutions to environmental issues, open to girls in high school and college.",
+        "link": "https://www.ecohackathon.org"
+    },
+    {
+        "name": "Women in Science Bootcamp",
+        "date": "January 10-12, 2026",
+        "location": "Online",
+        "description": "A bootcamp designed for young women passionate about pursuing careers in environmental science, featuring workshops and mentoring.",
+        "link": "https://www.wisbootcamp.com"
+    },
+    {
+        "name": "Sustainable Development Workshops",
+        "date": "February 8, 2026",
+        "location": "New York, NY",
+        "description": "Workshops focusing on sustainable development and environmental policy, aimed at inspiring the next generation of female environmentalists.",
+        "link": "https://www.sdw2025.org"
+    },
+    {
+        "name": "Climate Science Fair",
+        "date": "March 22, 2026",
+        "location": "Online",
+        "description": "An online science fair showcasing projects by young women addressing climate change and sustainability.",
+        "link": "https://www.climatesciencefair.com"
+    },
+    {
+        "name": "AI4ALL Girls Bootcamp",
+        "date": "November 15, 2025",
+        "location": "Online",
+        "description": "A bootcamp designed to inspire and educate young women in AI through project-based learning.",
+        "link": "https://ai4all.org/online-bootcamp"
+    },
+    {
+        "name": "Women in AI and Robotics Hackathon",
+        "date": "November 20-22, 2025",
+        "location": "San Francisco, CA",
+        "description": "A hackathon encouraging collaboration among females in AI and robotics fields.",
+        "link": "https://womeninai-reho.org/hackathon"
+    },
+    {
+        "name": "Girls Who Code AI Virtual Fair",
+        "date": "December 3, 2025",
+        "location": "Online",
+        "description": "Connect with industry experts and participate in workshops to explore AI technologies.",
+        "link": "https://girlswhocode.com/ai-virtual-fair"
+    },
+    {
+        "name": "Technovation Girls Summit",
+        "date": "January 14, 2026",
+        "location": "New York City, NY",
+        "description": "An inspiring summit for young girls to present AI-driven projects and network with female tech leaders.",
+        "link": "https://technovation.org/summit"
+    },
+    {
+        "name": "Tech Challenge for Social Good",
+        "date": "November 15, 2025",
+        "location": "Online",
+        "description": "A virtual competition where participants create innovative tech solutions addressing social issues in their communities.",
+        "link": "https://techchallenge2025.com"
+    },
+    {
+        "name": "Women in STEM Inspiration Bootcamp",
+        "date": "December 10, 2025",
+        "location": "Seattle, WA",
+        "description": "An immersive workshop designed to inspire and equip young women with skills to thrive in STEM fields.",
+        "link": "https://wistembootcamp2025.org"
+    },
+    {
+        "name": "Global STEM Hackathon for Sustainability",
+        "date": "January 8-10, 2026",
+        "location": "Online",
+        "description": "A 48-hour hackathon focused on building tech solutions that promote environmental sustainability and innovation.",
+        "link": "https://globalsustainhackathon.org"
+    },
+    {
+        "name": "Girls Innovate! Tech Fair",
+        "date": "February 20, 2026",
+        "location": "New York, NY",
+        "description": "A showcase event featuring projects and innovations by young women in the tech industry.",
+        "link": "https://girlsinnovatefair2026.com"
+    },
+    {
+        "name": "STEM Leadership Summit for Young Women",
+        "date": "March 5, 2026",
+        "location": "Boston, MA",
+        "description": "A leadership summit that connects young women with leaders in science, technology, engineering, and mathematics.",
+        "link": "https://stemleadershipsummit2026.org"
+    },
+    {
+        "name": "AI4ALL Summer Bootcamp",
+        "date": "July 10, 2026",
+        "location": "Online",
+        "description": "A summer bootcamp designed to inspire high school girls to explore AI through hands-on learning, mentorship, and community.",
+        "link": "https://ai-4-all.org/"
+    },
+    {
+        "name": "Girls in AI: Global Hackathon 2025",
+        "date": "December 5, 2025",
+        "location": "Online",
+        "description": "A hackathon for young women to engage in AI, coding, and developing solutions for real-world problems.",
+        "link": "https://girlsinai.com/"
+    },
+    {
+        "name": "Empower AI Workshop",
+        "date": "November 15, 2025",
+        "location": "San Francisco, CA",
+        "description": "An interactive workshop aimed at bridging the gender gap in AI fields by empowering young girls with coding and AI skills.",
+        "link": "https://empowerai.org/"
+    },
+    {
+        "name": "Women in AI & Robotics Hackathon",
+        "date": "January 20, 2026",
+        "location": "New York, NY",
+        "description": "Join this hackathon to connect with mentors, innovate AI solutions, and win exciting prizes.",
+        "link": "https://womeninairobotics.org/"
+    },
+    {
+        "name": "TechGirlz: AI Adventure Workshop",
+        "date": "February 18, 2026",
+        "location": "Online",
+        "description": "A workshop specially organized for middle school girls to explore AI technologies with fun projects and hands-on experiments.",
+        "link": "https://www.techgirlz.org/"
+    },
+    {
+        "name": "Girls Who Code Summer Immersion Program",
+        "date": "July 8, 2026",
+        "location": "Online",
+        "description": "A free two-week program teaching high school girls coding and computer science skills.",
+        "link": "https://girlswhocode.com/programs/summer-immersion"
+    },
+    {
+        "name": "Technovation Girls Challenge",
+        "date": "Registration opens November 1, 2025",
+        "location": "Online",
+        "description": "A competition where girls create an app to solve real-world problems.",
+        "link": "https://technovationchallenge.org"
+    },
+    {
+        "name": "SheHacks Boston",
+        "date": "January 23, 2026",
+        "location": "Boston, MA",
+        "description": "An all-women's 36-hour hackathon focusing on collaboration, empowerment, and innovation.",
+        "link": "https://shehacks.io"
+    },
+    {
+        "name": "Rails Girls Workshop",
+        "date": "November 15, 2025",
+        "location": "New York, NY",
+        "description": "A free coding workshop for women to learn about web app development using Ruby on Rails.",
+        "link": "https://railsgirls.com"
+    },
+    {
+        "name": "Django Girls Workshop",
+        "date": "December 5, 2025",
+        "location": "Los Angeles, CA",
+        "description": "A one-day workshop for beginners focusing on developing websites with Django and Python.",
+        "link": "https://djangogirls.org"
+    },
+    {
+        "name": "CodeGirlHacks",
+        "date": "May 14, 2026",
+        "location": "Online",
+        "description": "A virtual hackathon aiming to encourage creativity and coding skills among young women.",
+        "link": "https://codegirlhacks.org"
+    },
+    {
+        "name": "RoboGals Robotics Challenge 2025",
+        "date": "November 10, 2025",
+        "location": "Online",
+        "description": "An international competition encouraging girls to develop and showcase their robotics skills. Participants will receive mentorship and can compete in various categories.",
+        "link": "https://www.robogals.org/robotics-challenge"
+    },
+    {
+        "name": "Girls in Robotics Camp",
+        "date": "December 5, 2025",
+        "location": "San Francisco, CA",
+        "description": "A week-long bootcamp designed to introduce girls to the basics of robotics, programming, and engineering through hands-on projects and sessions.",
+        "link": "https://www.girlsinrobotics.org/camp"
+    },
+    {
+        "name": "FIRST Tech Challenge: All Girls Event",
+        "date": "January 16, 2026",
+        "location": "Boston, MA",
+        "description": "This event is part of the FIRST Tech Challenge program, aiming to bring together all-girl teams for a day of competitive robotics and collaboration.",
+        "link": "https://www.firstinspires.org/robotics/ftc/all-girls-event"
+    },
+    {
+        "name": "Women in Robotics Hackathon",
+        "date": "February 20, 2026",
+        "location": "Online",
+        "description": "A global online hackathon focused on innovation in robotics, open exclusively to women participants. The event includes workshops and networking opportunities.",
+        "link": "https://www.womeninrobotics.org/hackathon"
+    },
+    {
+        "name": "Lady Developers Robotics Bootcamp",
+        "date": "March 8, 2026",
+        "location": "Austin, TX",
+        "description": "An intensive bootcamp offering women a deep dive into robotics engineering, including sessions led by industry experts and opportunities for project work.",
+        "link": "https://www.ladydevelopers.org/robotics-bootcamp"
+    },
+    {
+        "name": "Girls in Robotics Hackathon 2025",
+        "date": "November 10, 2025",
+        "location": "Online",
+        "description": "An annual hackathon focused on encouraging girls to create innovative robotics solutions. Participants will work in teams to solve real-world problems using robotics technology.",
+        "link": "https://www.girlsinroboticshackathon.org"
+    },
+    {
+        "name": "SheCodes Robotics Bootcamp",
+        "date": "December 1, 2025",
+        "location": "San Francisco, CA",
+        "description": "A month-long immersive bootcamp designed to teach girls aged 12-18 about robotics, programming, and engineering principles.",
+        "link": "https://www.shecodesrobotics.com"
+    },
+    {
+        "name": "Girl Powered Robotics Workshop",
+        "date": "February 15, 2026",
+        "location": "Austin, TX",
+        "description": "A hands-on workshop to inspire the next generation of female robotics engineers, with interactive sessions on robot design and building.",
+        "link": "https://www.girlpoweredrobotics.org"
+    },
+    {
+        "name": "Empower Her Robotics Conference 2026",
+        "date": "March 20, 2026",
+        "location": "New York, NY",
+        "description": "An inspiring conference dedicated to empowering young women in robotics, featuring keynote speakers, panel discussions, and networking opportunities.",
+        "link": "https://www.empowerherrobotics.com"
+    },
+    {
+        "name": "Robotics for Girls Competition",
+        "date": "April 5, 2026",
+        "location": "Chicago, IL",
+        "description": "A competition that challenges high school girls to design and program their robots to complete specific tasks. Top teams win scholarships and mentorship opportunities.",
+        "link": "https://www.roboticsforgirlscompetition.org"
+    },
+    {
+        "name": "Girls in Robotics Hackathon",
+        "date": "November 10, 2025",
+        "location": "Online",
+        "description": "An online hackathon designed specifically for girls interested in robotics. Participants will work in teams to solve challenges and build innovative robotics projects.",
+        "link": "https://www.girlsinroboticshackathon.org"
+    },
+    {
+        "name": "TechGirls Robotics Bootcamp",
+        "date": "December 5-10, 2025",
+        "location": "San Francisco, CA",
+        "description": "A bootcamp dedicated to empowering young women in robotics and technology. Offers workshops and hands-on experiences in coding and robot design.",
+        "link": "https://www.techgirlsbootcamp.com"
+    },
+    {
+        "name": "RoboWomen International Competition",
+        "date": "January 15, 2026",
+        "location": "Online",
+        "description": "An international robotics competition exclusively for female students. Teams will compete on designing and programming robots to complete specific tasks.",
+        "link": "https://www.robowomencompetition.org"
+    },
+    {
+        "name": "Women in STEM Robotics Summit",
+        "date": "February 22, 2026",
+        "location": "Boston, MA",
+        "description": "An annual summit bringing together women in STEM fields to share insights, participate in workshops, and explore the future of robotics.",
+        "link": "https://www.womenstemroboticssummit.org"
     }
 ]
